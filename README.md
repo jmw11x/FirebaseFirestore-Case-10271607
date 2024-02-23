@@ -1,4 +1,7 @@
-Folder contains a project configured that I made today
+Folder contains a new project configured that I made today (same error) 
+
+Project ID : firestoremcve
+Project number : 653252239666
 
 You can firebase serve and it is all ready inside folder.
 
