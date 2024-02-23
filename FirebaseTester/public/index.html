@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>MCVE</title>
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+  <!-- MDB -->
+  <style>
+    body{
+      background: silver;
+      overflow: hidden;
+    }
+
+
+    input {
+      width: 300px;
+      height: 40px;
+      border-radius: 14px;
+      text-align: center;
+    }
+
+    button{
+      background: lightslategray;
+      border-radius: 13px;
+    }
+
+    button:hover{
+      background: rgb(184, 199, 214);
+      border: 4px solid red;
+      cursor: pointer;
+    }
+
+    
+  </style>
+
+   <script type="module">
+    import { initializeApp, deleteApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import {
+      getFirestore,
+      collection,
+      doc,
+      onSnapshot,
+      where,
+      query,
+      setDoc,
+      addDoc,
+      Timestamp,
+      getDocFromCache,
+      updateDoc,
+      getDocs,
+      orderBy,
+      increment
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDktiqNSOUXQp91g-SAmPAjCg3ZgC-5sfY",
+      authDomain: "firestoremcve.firebaseapp.com",
+      projectId: "firestoremcve",
+      storageBucket: "firestoremcve.appspot.com",
+      messagingSenderId: "653252239666",
+      appId: "1:653252239666:web:17ad1ef6e356a71130772b",
+      measurementId: "G-EXM9G7XZQD"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    // Initialize Firebase
+    const db = getFirestore(app)
+
+    const admin = getAuth(app);
+
+    function createUser() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      createUserWithEmailAndPassword(admin, email, password)
+        .then((userCredential) => {
+          // Signed up 
+
+          const user = userCredential.user;
+          console.log(user)
+          const refr = collection(db,'Users')
+          const myuser = addDoc(refr,{id: userCredential.user.uid, name: name, email: email}).then((e)=>{
+            alert('thanks for making an account login please')
+            window.open('./', '_self')
+          })
+          // ...
+        })
+        .catch( (error) => {
+          const errorCode = error.code;
+
+          const errorMessage = error.message;
+          console.log(errorMessage)
+          // ..
+        });
+
+    }
+
+    window.createUser = createUser; 
+
+
+  </script>
+</head>
+
+<body>
+  <div class="head" style="background: lightskyblue;text-align: center;font-size: xx-large;position: absolute;top:1%;width: 100vw;">THANK YOU FOR THE HELP!</div>
+
+  <div class="main">  	
+
+			<div class="signup" style="height: 100vh; display: flex;align-items: center;justify-content: center;flex-direction: column;">
+        <div class="seedata" style="position: absolute;top: 15%;"><button onclick="window.open('./Users/noauthdata.html','_self')">CLICK ME TO SEE DATA WITHOUT AUTH</button></div>
+				<div style="display: flex; gap: 20px; flex-direction: column;background: rgb(194, 194, 239);padding: 100px; border-radius: 14px;">
+					<label style="font-size: xx-large;text-align: center;" for="chk" aria-hidden="true">Sign up</label>
+					<input type="text" name="txt" placeholder="User name" id="name" required="">
+					<input type="email" name="email" placeholder="Email" id="email" required="">
+					<input type="password" name="pswd" placeholder="Password" id="password" required="">
+					<button onclick="createUser()">Sign up MCVE</button>
+        </div>
+			</div>
+
+	</div>
+
+ 
+</body>
+
+</html>
