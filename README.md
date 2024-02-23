@@ -7,4 +7,6 @@ You can view data without creating an account and also with creating an account 
 I have not included persistant cache on this repo. 
 
 Problem Statment: Safari is not displaying data at all with defaut settings for onSnapshot method while on other browsers data loads normally.
-  =>To see this issue view either of the pages at /Users/data.html (logged in) or at /Users/noauthdata.html on local server. 
+  =>To see this issue view either of the pages at 
+    1) /Users/data.html (logged in) 
+    2) or at /Users/noauthdata.html on local server (edit firestore.rules from if request.auth != null to if true to revoke auth privlages)
