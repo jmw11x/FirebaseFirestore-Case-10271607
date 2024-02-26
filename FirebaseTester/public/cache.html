@@ -206,7 +206,7 @@
         
         const data = collection(db, "Data");
 
-        const get_data = onSnapshot(data, (snapshot) => {
+        const get_data = onSnapshot(data, { includeMetadataChanges: true }, (snapshot) => {
             snapshot.docChanges().forEach((change) => {
                 if (change.type == 'added') {
                     const data = change.doc.data();
