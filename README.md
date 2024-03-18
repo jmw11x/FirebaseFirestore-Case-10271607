@@ -15,4 +15,4 @@ Problem Statment: Safari is not displaying data at all with defaut settings for 
     2) or at /Users/noauthdata.html on local server (edit firestore.rules from if request.auth != null to if true to revoke auth privlages)
 
 
-    ** NOW WORKS ON SAFARI WITHOUT CACHE. IT DID NOT WORK BEFORE SO SOMETHING WAS FIXED FIX CHACHE NOW TOO PLEASE
+    ** NOW WORKS ON SAFARI WITHOUT CACHE. 
